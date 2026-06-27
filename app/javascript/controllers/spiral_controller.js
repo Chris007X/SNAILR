@@ -22,6 +22,7 @@ export default class extends Controller {
     const maxR = Math.min(W, H) * 0.47
     const turns = 5
     const stepsCount = 2000
+    const rotationOffset = Math.PI
 
     const grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, W * 0.5)
     grd.addColorStop(0, "rgba(140,130,114,0.08)")
@@ -34,8 +35,8 @@ export default class extends Controller {
       for (let i = 0; i <= stepsCount; i++) {
         const t = (i / stepsCount) * turns * 2 * Math.PI
         const r = maxR * scale * Math.exp(-0.17 * (turns * 2 * Math.PI - t))
-        const x = cx + r * Math.cos(t)
-        const y = cy + r * Math.sin(t)
+        const x = cx + r * Math.cos(rotationOffset - t)
+        const y = cy + r * Math.sin(rotationOffset - t)
         i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)
       }
       ctx.strokeStyle = `rgba(140,130,114,${opacity})`
@@ -52,7 +53,7 @@ export default class extends Controller {
     for (let i = 0; i <= stepsCount; i++) {
       const t = (i / stepsCount) * turns * 2 * Math.PI
       const r = maxR * Math.exp(-0.17 * (turns * 2 * Math.PI - t))
-      pathSamples.push({ x: cx + r * Math.cos(t), y: cy + r * Math.sin(t) })
+      pathSamples.push({ x: cx + r * Math.cos(rotationOffset - t), y: cy + r * Math.sin(rotationOffset - t) })
     }
 
     const cumLen = [0]
