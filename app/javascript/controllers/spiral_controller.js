@@ -66,7 +66,7 @@ export default class extends Controller {
 
     steps.forEach((step, i) => {
       const target = totalPoints > 1
-        ? (i / (totalPoints - 1)) * totalLen
+        ? ((totalPoints - 1 - i) / (totalPoints - 1)) * totalLen
         : totalLen / 2
 
       let lo = 0, hi = cumLen.length - 1
@@ -77,7 +77,7 @@ export default class extends Controller {
       const { x, y } = pathSamples[hi]
 
       const dot = document.createElement("div")
-      dot.className = "fib-point" + (i === 0 ? " highlight" : "") + (step.done ? " done" : "")
+      dot.className = "fib-point" + (i === totalPoints - 1 ? " highlight" : "") + (step.done ? " done" : "")
       dot.style.left = x + "px"
       dot.style.top = y + "px"
       dot.setAttribute("data-bs-toggle", "modal")
