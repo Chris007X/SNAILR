@@ -22,18 +22,18 @@
     </div>
 
     <div class="creation-hero">
-      <h2 class="hero-headline">Slow down, change your life !</h2>
+      <h2 class="hero-headline">Ralentissez, changez de vie !</h2>
     </div>
 
     <div class="creation-form">
       <%= form_with url: chats_path, method: :post do |f| %>
         <div class="snail-input-box">
-          <%= f.text_field :content, placeholder: "What's my new challenge?", required: true, class: "creation-input snail-input-field", id: "chat-input-new" %>
+          <%= f.text_field :content, placeholder: "Quel est mon nouveau défi ?", required: true, class: "creation-input snail-input-field", id: "chat-input-new" %>
           <span class="snail-walker" id="snail-new">🐌</span>
-          <button type="button" class="voice-btn" id="voice-btn" title="Dictate your objective">
+          <button type="button" class="voice-btn" id="voice-btn" title="Dicter votre objectif">
             <i class="fa-solid fa-microphone"></i>
           </button>
-          <button type="submit" class="snail-submit-btn" id="submit-btn" disabled title="Create objective">
+          <button type="submit" class="snail-submit-btn" id="submit-btn" disabled title="Créer l'objectif">
             <i class="fa-solid fa-arrow-up"></i>
           </button>
         </div>

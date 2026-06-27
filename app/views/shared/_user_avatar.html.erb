@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <div class="user-avatar-widget" id="user-avatar-widget">
-    <button class="user-avatar-btn" id="user-avatar-btn" aria-label="User menu">
+    <button class="user-avatar-btn" id="user-avatar-btn" aria-label="Menu utilisateur">
       <%= "#{current_user.first_name.to_s[0]}#{current_user.last_name.to_s[0]}".upcase %>
     </button>
 
@@ -14,22 +14,22 @@
 
       <%= link_to objectives_path, class: "avatar-menu-item" do %>
         <i class="fa-solid fa-house"></i>
-        Home
+        Accueil
       <% end %>
 
       <%= link_to edit_user_registration_path, class: "avatar-menu-item" do %>
         <i class="fa-regular fa-circle-user"></i>
-        Profile
+        Profil
       <% end %>
 
       <%= link_to settings_path, class: "avatar-menu-item" do %>
         <i class="fa-solid fa-gear"></i>
-        Settings
+        Paramètres
       <% end %>
 
       <div class="avatar-menu-divider"></div>
 
-      <%= link_to "Log out", destroy_user_session_path,
+      <%= link_to "Déconnexion", destroy_user_session_path,
             data: { turbo_method: :delete },
             class: "avatar-menu-item avatar-menu-logout" %>
     </div>

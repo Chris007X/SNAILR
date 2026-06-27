@@ -2,12 +2,12 @@ class LlmResponseJob < ApplicationJob
   queue_as :default
 
   TITLE_PROMPT = <<~PROMPT
-    Generate a short, clear title in English (max 6 words) that captures the user's goal.
+    Generate a short, clear title in French (max 6 words) that captures the user's goal.
     Reply with ONLY the title, nothing else. No quotes, no punctuation at the end.
     Examples:
-    - User: "Je veux apprendre à coder" → Learn to Code
-    - User: "I want to run a marathon" → Run a Marathon
-    - User: "Perdre 10kg avant l'été" → Lose 10kg Before Summer
+    - User: "Je veux apprendre à coder" → Apprendre à coder
+    - User: "I want to run a marathon" → Courir un marathon
+    - User: "Perdre 10kg avant l'été" → Perdre 10kg avant l'été
   PROMPT
 
   SYSTEM_PROMPT = <<~PROMPT
@@ -30,7 +30,7 @@ class LlmResponseJob < ApplicationJob
     - xp_reward across all 5 steps must total exactly 100
     - Each step needs a measurable goal, one obstacle, and a quick_fix
     - Steps must be actionable and time-bound
-    - Answer in the same language as the user
+    - Always answer in French, regardless of the language used by the user
     - Output ONLY the JSON array, no other text
   PROMPT
 

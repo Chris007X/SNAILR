@@ -3,17 +3,17 @@
 
     <!-- Section Hero / Titre de bienvenue -->
     <section class="hero-dashboard">
-      <h1 class="headline">Your Intentional Path.</h1>
+      <h1 class="headline">Votre chemin intentionnel.</h1>
       <p class="subheadline">
-        Manage your life goals with focus. <br>
-        One deliberate step at a time.
+        Gérez vos objectifs de vie avec concentration. <br>
+        Un pas délibéré à la fois.
       </p>
     </section>
 
     <!-- Liste des Objectifs -->
     <section class="objectives-section">
       <div class="section-header">
-        <h3 class="section-label">Your Objectives</h3>
+        <h3 class="section-label">Vos objectifs</h3>
       </div>
 
       <div class="objectives-stack">
@@ -25,9 +25,9 @@
                 <div class="objective-content">
                   <div class="objective-info">
                     <span class="objective-name"><%= objective.title %></span>
-                    <%# Affiche "In progress" ou "Completed" proprement %>
+                    <%# Affiche "En cours" ou "Terminé" proprement %>
                     <span class="objective-status">
-                      <%= objective.status.humanize %>
+                      <%= { "in_creation" => "En création", "in_progress" => "En cours", "completed" => "Terminé" }[objective.status] %>
                     </span>
                   </div>
 
@@ -59,12 +59,12 @@
                 </button>
                 <div class="objective-yt-dropdown" id="yt-drop-<%= objective.id %>">
                   <div class="yt-dropdown-header">
-                    <i class="fa-brands fa-youtube"></i> Recommended videos
+                    <i class="fa-brands fa-youtube"></i> Vidéos recommandées
                   </div>
                   <% yt_links.each_with_index do |url, i| %>
                     <%= link_to url, target: "_blank", rel: "noopener noreferrer", class: "yt-video-link" do %>
                       <span class="yt-play-icon">▶</span>
-                      Video <%= i + 1 %>
+                      Vidéo <%= i + 1 %>
                     <% end %>
                   <% end %>
                 </div>
@@ -74,7 +74,7 @@
         <% else %>
           <%# Message affiché si l'utilisateur n'a aucune donnée %>
           <div class="empty-state">
-            <p>Ready to start your journey? <br> Create your first objective below.</p>
+            <p>Prêt à commencer votre voyage ? <br> Créez votre premier objectif ci-dessous.</p>
           </div>
         <% end %>
       </div>
@@ -83,7 +83,7 @@
     <!-- Footer Action / Bouton de création -->
     <footer class="app-footer">
       <%= link_to new_objective_path, class: "btn-pill btn-primary w-100" do %>
-        <span>Create a new objective</span>
+        <span>Créer un nouvel objectif</span>
         <i class="fa-solid fa-plus ms-2"></i>
       <% end %>
     </footer>
@@ -93,11 +93,11 @@
   <!-- Modale de confirmation suppression -->
   <div class="snail-modal-overlay" id="snail-modal-overlay">
     <div class="snail-modal">
-      <h4 class="snail-modal-title">Delete this objective?</h4>
-      <p class="snail-modal-body">This action is irreversible.</p>
+      <h4 class="snail-modal-title">Supprimer cet objectif ?</h4>
+      <p class="snail-modal-body">Cette action est irréversible.</p>
       <div class="snail-modal-actions">
-        <button class="btn-pill btn-secondary" id="modal-cancel-btn">Cancel</button>
-        <button class="btn-pill btn-danger" id="modal-confirm-btn">Delete</button>
+        <button class="btn-pill btn-secondary" id="modal-cancel-btn">Annuler</button>
+        <button class="btn-pill btn-danger" id="modal-confirm-btn">Supprimer</button>
       </div>
     </div>
   </div>

@@ -12,11 +12,11 @@
      data-objective-title="<%= @objective.title %>"
      data-objective-steps="<%= @steps.map { |s| { position: s.position, title: s.title, xp_reward: s.xp_reward, goal: s.goal, obstacle: s.obstacle, quick_fix: s.quick_fix, done: s.done } }.to_json %>">
   <div class="show-header">
-    <h1 id="objective-title"><%= @objective.title.presence || "Building your plan..." %></h1>
-    <p>Your objective</p>
+    <h1 id="objective-title"><%= @objective.title.presence || "Construction de votre plan..." %></h1>
+    <p>Votre objectif</p>
   </div>
 
-  <button class="export-btn" id="export-btn" title="Export as text">
+  <button class="export-btn" id="export-btn" title="Exporter en texte">
     <i class="fa-solid fa-download"></i>
   </button>
 
@@ -26,11 +26,11 @@
     <div id="chat-section">
       <%= form_with scope: :message, url: chat_messages_path(@chat), method: :post do |f| %>
         <div class="snail-input-box">
-          <%= f.text_field :content, placeholder: "Ask Snail-R to refine your steps...", class: "snail-input-field", id: "chat-input-show" %>
-          <button type="button" class="voice-btn" id="voice-btn-show" title="Dictate your message">
+          <%= f.text_field :content, placeholder: "Demandez à Snail-R d'affiner vos étapes...", class: "snail-input-field", id: "chat-input-show" %>
+          <button type="button" class="voice-btn" id="voice-btn-show" title="Dicter votre message">
             <i class="fa-solid fa-microphone"></i>
           </button>
-          <button type="submit" class="snail-submit-btn" id="submit-btn-show" disabled title="Send message">
+          <button type="submit" class="snail-submit-btn" id="submit-btn-show" disabled title="Envoyer le message">
             <i class="fa-solid fa-arrow-up"></i>
           </button>
         </div>
@@ -42,7 +42,7 @@
 <script>
   document.getElementById('export-btn').addEventListener('click', function() {
     var container = document.querySelector('.objectives-show');
-    var title = container.dataset.objectiveTitle || 'My Objective';
+    var title = container.dataset.objectiveTitle || 'Mon Objectif';
     var steps = JSON.parse(container.dataset.objectiveSteps || '[]');
 
     var line = '━'.repeat(48);
@@ -53,17 +53,17 @@
 
     steps.forEach(function(s) {
       var status = s.done ? '✓' : '○';
-      text += '  ' + status + '  Step ' + s.position + '  ·  ' + s.title + '\n';
+      text += '  ' + status + '  Étape ' + s.position + '  ·  ' + s.title + '\n';
       text += '     ' + s.xp_reward + ' XP\n';
       text += thinLine + '\n';
-      text += '     Goal       ' + s.goal + '\n';
+      text += '     Objectif   ' + s.goal + '\n';
       text += '     Obstacle   ' + s.obstacle + '\n';
-      text += '     Quick Fix  ' + s.quick_fix + '\n';
+      text += '     Solution   ' + s.quick_fix + '\n';
       text += '\n';
     });
 
     text += line + '\n';
-    text += '  Exported from Snail-R\n';
+    text += '  Exporté depuis Snail-R\n';
     text += line + '\n';
 
     var blob = new Blob([text], { type: 'text/plain;charset=utf-8' });

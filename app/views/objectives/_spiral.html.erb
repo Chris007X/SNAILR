@@ -6,7 +6,7 @@
         <div class="loading-ring"></div>
         <div class="loading-ring"></div>
       </div>
-      <p class="loading-text">Crafting your path...</p>
+      <p class="loading-text">Élaboration de votre chemin...</p>
     </div>
   <% else %>
   <div id="spiral-container"
@@ -21,7 +21,7 @@
     <div class="progress-track">
       <div class="progress-fill" style="width: <%= progress %>%"></div>
     </div>
-    <span class="progress-label"><%= done_count %>/<%= steps.size %> steps</span>
+    <span class="progress-label"><%= done_count %>/<%= steps.size %> étapes</span>
   </div>
 
   <% steps.each do |step| %>
@@ -31,7 +31,7 @@
           <div class="modal-corner"><%= step.position %></div>
           <div class="modal-header">
             <div class="modal-title-wrapper flex-column">
-              <span class="modal-index">Step <%= step.position %></span>
+              <span class="modal-index">Étape <%= step.position %></span>
               <span class="modal-title"><%= step.title %></span>
             </div>
             <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal"></button>
@@ -39,15 +39,15 @@
           <div class="modal-body">
             <div class="fib-status">
               <% if step.done %>
-                <span class="status-done">&#10003; Completed</span>
+                <span class="status-done">&#10003; Terminée</span>
               <% else %>
-                <span class="status-pending">&#9675; In progress</span>
+                <span class="status-pending">&#9675; En cours</span>
               <% end %>
-              <div class="fib-ratio">&#10022; <strong><%= step.xp_reward %> XP</strong> reward</div>
+              <div class="fib-ratio">&#10022; <strong><%= step.xp_reward %> XP</strong> de récompense</div>
             </div>
             <div class="step-details mt-3">
               <div class="step-detail-item">
-                <div class="step-detail-label">Goal</div>
+                <div class="step-detail-label">Objectif</div>
                 <div class="step-detail-value"><%= step.goal %></div>
               </div>
               <div class="step-detail-item mt-2">
@@ -55,16 +55,16 @@
                 <div class="step-detail-value"><%= step.obstacle %></div>
               </div>
               <div class="step-detail-item mt-2">
-                <div class="step-detail-label">Quick Fix</div>
+                <div class="step-detail-label">Solution rapide</div>
                 <div class="step-detail-value"><%= step.quick_fix %></div>
               </div>
             </div>
           </div>
           <div class="modal-footer justify-content-between">
-            <button type="button" class="btn-gold" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn-gold" data-bs-dismiss="modal">Fermer</button>
             <% unless step.done %>
               <button type="button" class="btn-complete" data-step-id="<%= step.id %>">
-                <i class="fa-solid fa-check"></i> Mark as completed
+                <i class="fa-solid fa-check"></i> Marquer comme terminée
               </button>
             <% end %>
           </div>
@@ -78,7 +78,7 @@
       btn.addEventListener('click', function() {
         var stepId = this.dataset.stepId;
         btn.disabled = true;
-        btn.innerHTML = '<i class="fa-solid fa-check"></i> Completed';
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Terminée';
         btn.classList.add('btn-completed');
 
         fetch('/steps/' + stepId + '/mark_step_as_done', {
@@ -91,14 +91,14 @@
           var fill = document.querySelector('.progress-fill');
           var label = document.querySelector('.progress-label');
           if (fill) fill.style.width = data.progress + '%';
-          if (label) label.textContent = data.done_count + '/' + data.total_count + ' steps';
+          if (label) label.textContent = data.done_count + '/' + data.total_count + ' étapes';
 
           var modal = btn.closest('.modal');
           if (modal) {
             var status = modal.querySelector('.fib-status');
             if (status) {
               var span = status.querySelector('.status-pending');
-              if (span) { span.className = 'status-done'; span.innerHTML = '&#10003; Completed'; }
+              if (span) { span.className = 'status-done'; span.innerHTML = '&#10003; Terminée'; }
             }
           }
         });

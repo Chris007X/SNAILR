@@ -9,39 +9,39 @@
   <div class="app-container">
 
     <section class="hero-dashboard">
-      <h1 class="headline">Your Profile.</h1>
-      <p class="subheadline">Manage your personal information.</p>
+      <h1 class="headline">Votre profil.</h1>
+      <p class="subheadline">Gérez vos informations personnelles.</p>
     </section>
 
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= f.error_notification %>
 
-      <h3 class="section-label">Personal Info</h3>
+      <h3 class="section-label">Informations personnelles</h3>
 
-      <%= f.input :first_name, label: "First Name", required: false,
+      <%= f.input :first_name, label: "Prénom", required: false,
             input_html: { autocomplete: "given-name" } %>
-      <%= f.input :last_name, label: "Last Name", required: false,
+      <%= f.input :last_name, label: "Nom", required: false,
             input_html: { autocomplete: "family-name" } %>
-      <%= f.input :display_name, label: "Display Name", required: false %>
+      <%= f.input :display_name, label: "Nom d'affichage", required: false %>
       <%= f.input :email, label: "Email", required: true,
             input_html: { autocomplete: "email" } %>
 
-      <h3 class="section-label" style="margin-top: 32px;">Change Password</h3>
+      <h3 class="section-label" style="margin-top: 32px;">Changer le mot de passe</h3>
 
-      <%= f.input :password, label: "New Password",
-            hint: "Leave blank to keep your current password",
+      <%= f.input :password, label: "Nouveau mot de passe",
+            hint: "Laissez vide pour conserver votre mot de passe actuel",
             required: false,
             input_html: { autocomplete: "new-password" } %>
-      <%= f.input :password_confirmation, label: "Confirm New Password",
+      <%= f.input :password_confirmation, label: "Confirmer le nouveau mot de passe",
             required: false,
             input_html: { autocomplete: "new-password" } %>
-      <%= f.input :current_password, label: "Current Password",
-            hint: "Required to save any changes",
+      <%= f.input :current_password, label: "Mot de passe actuel",
+            hint: "Requis pour enregistrer toute modification",
             required: true,
             input_html: { autocomplete: "current-password" } %>
 
       <footer class="app-footer">
-        <%= f.button :submit, "Save Changes", class: "btn-pill btn-primary w-100" %>
+        <%= f.button :submit, "Enregistrer les modifications", class: "btn-pill btn-primary w-100" %>
       </footer>
     <% end %>
 
