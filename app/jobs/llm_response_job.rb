@@ -40,7 +40,7 @@ class LlmResponseJob < ApplicationJob
     user_message = Message.find(user_message_id)
 
     if objective.title.blank?
-      title_response = RubyLLM.chat(model: "gpt-4o-mini").with_instructions(TITLE_PROMPT).ask(user_message.content)
+      title_response = RubyLLM.chat(model: "gemini-3.5-flash").with_instructions(TITLE_PROMPT).ask(user_message.content)
       objective.update!(title: title_response.content.strip.delete('"'))
       Turbo::StreamsChannel.broadcast_replace_to(
         objective,
@@ -49,7 +49,7 @@ class LlmResponseJob < ApplicationJob
       )
     end
 
-    ruby_llm_chat = RubyLLM.chat(model: "gpt-4o-mini").with_instructions(SYSTEM_PROMPT)
+    ruby_llm_chat = RubyLLM.chat(model: "gemini-3.5-flash").with_instructions(SYSTEM_PROMPT)
 
     chat.messages.order(:created_at).where.not(id: user_message.id).each do |msg|
       ruby_llm_chat.ask(msg.content) if msg.role == "user"
